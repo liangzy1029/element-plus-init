@@ -1,0 +1,38 @@
+.main-layout {
+  /* 通用 */
+  --layout-border: 1px;
+
+  /* 顶部 */
+  --layout-header-height: 50px;
+
+  /* 侧边栏 */
+  --layout-side-width: 220px;
+  --layout-side-collapse-width: 65px;
+  --layout-side-height: 100vh;
+
+  /* 内容区 */
+  --layout-content-height: calc(100vh - var(--layout-header-height) - var(--layout-tags-height));
+
+  /* 标签页 */
+  --layout-tags-height: 29px;
+
+  /* Logo */
+  --logo-section-width: calc(var(--layout-side-width) - var(--layout-border));
+
+  --header-padding: 0 5%;
+  --footer-height: 60px;
+  --nav-action-width: 120px;
+  --menu-lable-font-size: 16px;
+  --main-content-horizontal-padding: 8%;
+  --main-content-vertical-padding: 12px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --y-base-padding: 8px;
+}

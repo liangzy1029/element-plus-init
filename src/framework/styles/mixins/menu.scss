@@ -1,0 +1,25 @@
+// 菜单基础样式混合器
+@mixin menu-base-styles {
+  // Element UI 菜单核心变量统一声明
+  --el-menu-base-level-padding: 12px;
+  --el-menu-level-padding: 12px;
+  --el-menu-hover-bg-color: #f5f7fa;
+  --el-menu-item-height: 50px;
+  --el-menu-sub-item-height: 50px;
+  --el-menu-item-font-size: 16px;
+  --el-menu-active-color: var(--el-color-primary);
+
+  // 通用盒模型样式
+  margin: 2px 8px;
+  border-radius: 8px;
+}
+
+// 菜单激活态样式混合器
+@mixin menu-active-style {
+  background-color: #1d84ff1a;
+}
+
+// 单独控制菜单图标基础样式
+.menu-title-icon {
+  font-size: 20px;
+}

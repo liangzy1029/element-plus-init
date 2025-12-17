@@ -1,0 +1,6 @@
+export { default as YAuthority } from '@/framework/components/YAuthority.vue'
+export { default as YContainer } from '@/framework/components/YContainer.vue'
+export { default as YContextMenu } from '@/framework/components/YContextMenu.vue'
+export { default as YPagination } from '@/framework/components/YPagination.vue'
+export { default as YPictureUploader } from '@/framework/components/YPictureUploader.vue'
+export { default as YSvgIcon } from '@/framework/components/YSvgIcon.vue'
