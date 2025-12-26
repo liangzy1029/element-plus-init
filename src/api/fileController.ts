@@ -35,7 +35,6 @@ export async function uploadFile(
   return request<API.BaseResponseString>(`/api/file/upload`, {
     method: 'POST',
     data: formData,
-    //@ts-ignore
     requestType: 'form',
     ...(options || {}),
   })

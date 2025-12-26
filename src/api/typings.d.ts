@@ -5,12 +5,6 @@ declare namespace API {
     message?: string
   }
 
-  type BaseResponseLoginUserVO = {
-    code?: number
-    data?: LoginUserVO
-    message?: string
-  }
-
   type BaseResponseLong = {
     code?: number
     data?: number
@@ -43,16 +37,6 @@ declare namespace API {
     id: number
   }
 
-  type LoginUserVO = {
-    id?: number
-    userAccount?: string
-    userName?: string
-    userAvatar?: string
-    userProfile?: string
-    userRole?: string
-    createTime?: string
-  }
-
   type PageResponseUserVO = {
     current?: number
     size?: number
@@ -71,6 +55,7 @@ declare namespace API {
     userAvatar?: string
     userProfile?: string
     userRole?: string
+    createTime?: string
   }
 
   type UserLoginRequest = {

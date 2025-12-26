@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { getLoginUser, userLogout } from '@/api/userController'
 
-const DefaultLoginUser: API.LoginUserVO = {
+const DefaultLoginUser: API.UserVO = {
   userAccount: '',
   userName: '',
   userAvatar: '',
@@ -12,7 +12,7 @@ const DefaultLoginUser: API.LoginUserVO = {
 }
 
 export const useUserStore = defineStore('user', () => {
-  const loginUser = ref<API.LoginUserVO>({ ...DefaultLoginUser })
+  const loginUser = ref<API.UserVO>({ ...DefaultLoginUser })
 
   const doUserLogout = async () => {
     userLogout()

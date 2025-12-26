@@ -40,7 +40,7 @@ export async function exportUser(body: API.UserQueryRequest, options?: { [key: s
 
 /** 此处后端没有提供注释 GET /user/get/login */
 export async function getLoginUser(options?: { [key: string]: any }) {
-  return request<API.BaseResponseLoginUserVO>(`/api/user/get/login`, {
+  return request<API.BaseResponseUserVO>(`/api/user/get/login`, {
     method: 'GET',
     ...(options || {}),
   })
@@ -62,32 +62,40 @@ export async function getUserVo(
 }
 
 /** 此处后端没有提供注释 POST /user/import */
-export async function importUser(body: {}, options?: { [key: string]: any }) {
+export async function importUser(body: {}, file?: File, options?: { [key: string]: any }) {
+  const formData = new FormData()
+
+  if (file) {
+    formData.append('file', file)
+  }
+
+  Object.keys(body).forEach((ele) => {
+    const item = (body as any)[ele]
+
+    if (item !== undefined && item !== null) {
+      if (typeof item === 'object' && !(item instanceof File)) {
+        if (item instanceof Array) {
+          item.forEach((f) => formData.append(ele, f || ''))
+        } else {
+          formData.append(ele, new Blob([JSON.stringify(item)], { type: 'application/json' }))
+        }
+      } else {
+        formData.append(ele, item)
+      }
+    }
+  })
+
   return request<API.BaseResponseBoolean>(`/api/user/import`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: body,
-    ...(options || {}),
-  })
-}
-
-/** 此处后端没有提供注释 POST /user/list/page/vo */
-export async function pageUserVo(body: API.UserQueryRequest, options?: { [key: string]: any }) {
-  return request<API.BaseResponsePageResponseUserVO>(`/api/user/list/page/vo`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: body,
+    data: formData,
+    requestType: 'form',
     ...(options || {}),
   })
 }
 
 /** 此处后端没有提供注释 POST /user/login */
 export async function userLogin(body: API.UserLoginRequest, options?: { [key: string]: any }) {
-  return request<API.BaseResponseLoginUserVO>(`/api/user/login`, {
+  return request<API.BaseResponseUserVO>(`/api/user/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -101,6 +109,18 @@ export async function userLogin(body: API.UserLoginRequest, options?: { [key: st
 export async function userLogout(options?: { [key: string]: any }) {
   return request<API.BaseResponseBoolean>(`/api/user/logout`, {
     method: 'POST',
+    ...(options || {}),
+  })
+}
+
+/** 此处后端没有提供注释 POST /user/page/vo */
+export async function pageUserVo(body: API.UserQueryRequest, options?: { [key: string]: any }) {
+  return request<API.BaseResponsePageResponseUserVO>(`/api/user/page/vo`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
     ...(options || {}),
   })
 }
